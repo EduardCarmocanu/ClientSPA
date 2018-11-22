@@ -1,0 +1,32 @@
+.loadscreen-container {
+    height: 100%;
+    width: 100%;
+    background-color: $c-primary;
+    position: absolute;
+    z-index: 100;
+    display: block;
+    .loadbox {
+        text-align: text-center;
+        .loadscreen-box,
+        .icon-box {
+            width: 50%;
+            margin: 50px auto;
+        }
+        
+        .load-image,
+        .icon-image {
+            width: 100%;
+        }
+        
+        .loadscreen-footer {
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 30%;
+        }
+    }   
+    &--hide {
+        display: none;
+    } 
+}
+

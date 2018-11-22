@@ -1,0 +1,18 @@
+.filter {
+	ul {
+		@include flex(space-between, center, row);
+		padding: 0px 10px;
+		background-color: $c-tertiary;
+		position: relative;
+		overflow-x: auto;
+		margin: 0;
+		margin-top: -52px;
+		.type-filter {
+			padding: 10px 15px; 
+			transition: all 0.2s ease-in-out;
+			&--active {
+				transform: scale(.8, .8);
+			}
+		}
+	}
+}
