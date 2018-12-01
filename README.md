@@ -1,4 +1,4 @@
-# client-s-p-a
+# clientSPA
 
 ## Project setup
 ```
