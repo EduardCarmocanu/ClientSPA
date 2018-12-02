@@ -101,7 +101,7 @@
 			initializeMarkers () {
 				FetchMarkers().forEach((Marker) => {
 					var markerInstance = new google.maps.Marker({
-						position: new google.maps.LatLng(Marker.Lat, Marker.Long),
+						position: new google.maps.LatLng(Marker.Lat, Marker.Lng),
 						title: Marker.Title,
 						_type: Marker.Type,
 						_expireDate: Marker.ExpireDate,
