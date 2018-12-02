@@ -7,7 +7,6 @@
 <script>
 	import FetchMarkers from './../../utils/FetchMarkers.js';
 	import _MapConfig from './configs/map.config.js';
-	// import _MapOverlayConfig from './configs/map-overlay.config.js';
 	import { EventBus } from './../../utils/event-bus.js'
 
 
