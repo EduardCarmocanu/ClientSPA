@@ -91,6 +91,7 @@
 						new google.maps.LatLng(N, W),
 						new google.maps.LatLng(S, E)
 					));
+					this.map.setZoom(4);
 				}
 			},
 			initializeMarkers (markersList) {
