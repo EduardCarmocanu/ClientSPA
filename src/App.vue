@@ -16,6 +16,8 @@ import GoogleMaps from "./components/GoogleMaps/GoogleMaps";
 import Filter from "./components/Filter/Filter";
 import DescriptionBox from "./components/DescriptionBox/DescriptionBox";
 import Loadingscreen from "./components/Loadingscreen/Loadingscreen";
+import RequestFactory from "./utils/RequestFactory";
+import MarkerTypes from "@/components/Stores/MarkerTypes";
 
 export default {
   name: "app",
@@ -23,6 +25,9 @@ export default {
     return {
       msg: "Welcome to Your Vue.js App"
     };
+  },
+  mounted () {
+	  
   },
   components: {
     "app-header": Header,

@@ -1,14 +1,14 @@
 <template>
 	<div class="filter">
-		<ul>
+		<ul v-if="markerTypes.types.length > 0">
 			<li 
 				class="type-filter"
-				v-for="markerType in markerTypes" 
-				:key="markerType" 
-				@click="EmitNewActiveMarkerType(markerType)"
-				:class="markerType === activeMarkerType ? 'type-filter--active' : null"
+				v-for="type in markerTypes.types" 
+				:key="type.id" 
+				@click="EmitNewActiveMarkerType(type.id)"
+				:class="type === activeMarkerType ? 'type-filter--active' : null"
 			>
-				<img :src="require('@/assets/img/icons/types/' + markerType + '.png')" :alt="markerType">
+				<img :src="require('@/assets/img/icons/types/' + type.name + '.png')" :alt="type.name">
 			</li>
 		</ul>
 	</div>
@@ -16,17 +16,14 @@
 
 <script>
 import { EventBus } from '@/utils/event-bus.js'
+import RequestFactory from '@/utils/RequestFactory'
+import MarkerTypes from '@/components/Stores/MarkerTypes'
 
 export default {
 	data () {
 		return {
-			markerTypes: [
-				'Playground',
-				'Shop',
-				'Animal',
-				'Accommodation',
-			],
-			activeMarkerType: 'Animal'
+			markerTypes: MarkerTypes,
+			activeMarkerType: 1
 		}
 	},
 	methods: {

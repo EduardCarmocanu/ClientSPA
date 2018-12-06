@@ -5,17 +5,18 @@
 </template>
 
 <script>
-	import FetchMarkers from './../../utils/FetchMarkers.js';
 	import _MapConfig from './configs/map.config.js';
 	import { EventBus } from './../../utils/event-bus.js'
-
+	import RequestFactory from '@/utils/RequestFactory';
+	import MarkerTypes from '@/components/Stores/MarkerTypes'
 
 	export default {
 		data () {
 			return {
 				map: {},
 				markersStore: {},
-				activeMarkerType: 'Animal',
+				markerTypes: MarkerTypes,
+				activeMarkerType: 1,
 				bounds: {
 					NE: new google.maps.LatLng(16.0, 26.0),
 					SW: new google.maps.LatLng(-57.0, -77.0)
@@ -28,23 +29,18 @@
 				_MapConfig
 			);
 			this.map.addListener('bounds_changed', this.CheckBoundries)
-			this.initializeMarkers()
+			// FOR DEBUGGING PURPOSSES
+			this.map.addListener('click', (e) => {
+				console.log(e.latLng.lat())
+				console.log(e.latLng.lng())
+			})
 
-			var zooMap = new google.maps.ImageMapType({	
-				getTileUrl: () => {
-					return require('@/assets/img/map-overlay.png');
-				},
-				tileSize: new google.maps.Size(1173, 932),
-				maxZoom: 4,
-				minZoom: 4,
-				name: 'zoo'
-			});
-			this.map.mapTypes.set('zoo', zooMap);
-			this.map.setMapTypeId('zoo');	
+			this.initializeMapOverlay();
 
 			EventBus.$on('SetNewActiveMarkers', markerType => {
 				this.SetNewActiveMarkers(markerType);
 			})
+			RequestFactory.GET("markers", "", this.initializeMarkers);
 		},
 		methods: {
 			CheckBoundries() {
@@ -97,30 +93,46 @@
 					));
 				}
 			},
-			initializeMarkers () {
-				FetchMarkers().forEach((Marker) => {
+			initializeMarkers (markersList) {
+				markersList.forEach((marker) => {
 					var markerInstance = new google.maps.Marker({
-						position: new google.maps.LatLng(Marker.Lat, Marker.Lng),
-						title: Marker.Title,
-						_type: Marker.Type,
-						_expireDate: Marker.ExpireDate,
-						_descriptionId: Marker.DescriptionId
-					})
-
+						position: new google.maps.LatLng(marker.lat, marker.lng),
+						type: marker.markerTypeID,
+						descriptionID: marker.id
+					});
 					markerInstance.addListener('click', () => {
-						this.ShowMarkerDescription(markerInstance._descriptionId)
+						this.ShowMarkerDescription(markerInstance.descriptionID, markerInstance.type)
 					});
 					
 					this.SetMarker(markerInstance);
 				});
 				this.SetNewActiveMarkers(this.activeMarkerType);
 			},
+			initializeMapOverlay() {
+				var zooMap = new google.maps.ImageMapType({	
+					getTileUrl: () => {
+						return require('@/assets/img/map-overlay.png');
+					},
+					tileSize: new google.maps.Size(1173, 932),
+					maxZoom: 4,
+					minZoom: 4,
+					name: 'zoo',
+					bounds: {
+						north: 55.814046,
+						south: 55.803109,
+						east: 9.364265,
+						west: 9.340000,
+					}
+				});
+				this.map.mapTypes.set('zoo', zooMap);
+				this.map.setMapTypeId('zoo');	
+			},
 			SetMarker (marker) {
-				if (this.markersStore.hasOwnProperty(marker._type)) {
-					this.markersStore[marker._type].push(marker)
+				if (this.markersStore.hasOwnProperty(marker.type)) {
+					this.markersStore[marker.type].push(marker)
 				}
 				else {
-					this.markersStore[marker._type] = [marker]
+					this.markersStore[marker.type] = [marker]
 				}
 			},
 			SetActiveMarkers() {
@@ -129,7 +141,7 @@
 				})
 			},
 			UnsetActiveMarkers() {
-				this.markersStore[this.activeMarkerType].forEach( marker => {
+				this.markersStore[this.activeMarkerType].forEach(marker => {
 					marker.setMap(null);
 				})
 			},
@@ -138,8 +150,8 @@
 				this.activeMarkerType = markerType;
 				this.SetActiveMarkers();
 			},
-			ShowMarkerDescription(_descriptionId) {
-				EventBus.$emit('ShowDescription', _descriptionId);
+			ShowMarkerDescription(descriptionID, markerType) {
+				EventBus.$emit('ShowDescription', descriptionID, markerType);
 			}
 		}
 	};
