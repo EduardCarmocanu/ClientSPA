@@ -29,18 +29,13 @@
 				_MapConfig
 			);
 			this.map.addListener('bounds_changed', this.CheckBoundries)
-			// FOR DEBUGGING PURPOSSES
-			this.map.addListener('click', (e) => {
-				console.log(e.latLng.lat())
-				console.log(e.latLng.lng())
-			})
 
 			this.initializeMapOverlay();
 
 			EventBus.$on('SetNewActiveMarkers', markerType => {
 				this.SetNewActiveMarkers(markerType);
 			})
-			RequestFactory.GET("markers", "", this.initializeMarkers);
+			RequestFactory.GET("MarkersApi", "", this.initializeMarkers);
 		},
 		methods: {
 			CheckBoundries() {
@@ -99,12 +94,11 @@
 					var markerInstance = new google.maps.Marker({
 						position: new google.maps.LatLng(marker.lat, marker.lng),
 						type: marker.markerTypeID,
-						descriptionID: marker.id
+						descriptionID: marker.description.id
 					});
 					markerInstance.addListener('click', () => {
 						this.ShowMarkerDescription(markerInstance.descriptionID, markerInstance.type)
 					});
-					
 					this.SetMarker(markerInstance);
 				});
 				this.SetNewActiveMarkers(this.activeMarkerType);
@@ -137,14 +131,18 @@
 				}
 			},
 			SetActiveMarkers() {
-				this.markersStore[this.activeMarkerType].forEach( marker => {
-					marker.setMap(this.map);
-				})
+				if (this.markersStore[this.activeMarkerType] !== undefined) {
+					this.markersStore[this.activeMarkerType].forEach( marker => {
+						marker.setMap(this.map);
+					})
+				}
 			},
 			UnsetActiveMarkers() {
-				this.markersStore[this.activeMarkerType].forEach(marker => {
-					marker.setMap(null);
-				})
+				if (this.markersStore[this.activeMarkerType] !== undefined) {
+					this.markersStore[this.activeMarkerType].forEach(marker => {
+						marker.setMap(null);
+					})
+				}
 			},
 			SetNewActiveMarkers(markerType) {
 				this.UnsetActiveMarkers();

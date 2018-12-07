@@ -1,7 +1,7 @@
 class RequestFactory {
-	url = "https://localhost:44339/api/";
+	url = "https://localhost:44334/api/";
 	configuration = {
-		"Content-Type": "application/json",
+		"Content-Type": "application/json"
 	};
 	
 	GET = (controller, id = "", callback = () => { return null }) => {

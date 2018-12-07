@@ -4,7 +4,7 @@ class MarkerTypesStore {
 	types = [];
  
 	constructor () {
-		RequestFactory.GET("markerTypes", "", (markerTypes) => {
+		RequestFactory.GET("MarkerTypesApi", "", (markerTypes) => {
 			this.types = markerTypes;
 		});
 	}
