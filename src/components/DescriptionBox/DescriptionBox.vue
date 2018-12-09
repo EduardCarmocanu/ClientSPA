@@ -49,7 +49,6 @@
 		},
 		mounted() {
 			EventBus.$on('ShowDescription', (descriptionID, type) => {
-				console.log(MarkerTypes)
 				this.descriptionType = type;
 				this.ShowDescription(descriptionID);
 			})
