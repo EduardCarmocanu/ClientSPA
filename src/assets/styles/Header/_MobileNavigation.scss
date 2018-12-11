@@ -55,22 +55,26 @@
 						padding: 15px 0;
 						h3 {
 							margin: 0;
+							color: $c-quaternary;
+							text-decoration: none;
 						}
 					}
 				}
 			}
-			.social-media {
-				position: relative;
-				padding: 0 40px;
-				@include flex(space-between, center, row)
-			}
-			.copyright {
+			.mobile-nav_footer {
 				position: absolute;
-				bottom: 0px;
-				text-align: center;
-				p {
-					font-size: 11px;
-					color: $c-quaternary;	
+				bottom: 2px;
+								
+				.social-media {
+					padding: 0 40px;
+					@include flex(space-between, center, row);
+				}
+				.copyright {
+					text-align: center;
+					p {
+						font-size: 12px;
+						color: $c-quaternary;	
+					}
 				}
 			}
 		}
