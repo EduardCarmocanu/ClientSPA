@@ -13,29 +13,28 @@
 				</div>
 			</div>
 			<div class="mobile-nav__body">
-				<div class="links">
-					<ul>
-						<li>
-							<h3>Link</h3>
-						</li>
-						<li>
-							<h3>Link</h3>
-						</li>
-						<li>
-							<h3>Link</h3>
-						</li>
-						<li>
-							<h3>Link</h3>
-						</li>
-					</ul>
-				</div>
-				<div class="social-media">
-					<img src="@/assets/img/icons/facebook.png" alt="facebook">
-					<img src="@/assets/img/icons/instagram.png" alt="instagram">
-					<img src="@/assets/img/icons/tripadvisor.png" alt="tripadvisor">
-				</div>
-				<div class="copyright">
-					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos libero beatae dicta eveniet ipsa veritati</p>
+				<div class="mobile-nav_footer">
+					<div class="links">
+						<ul>
+							<li>
+								<a href="www.givskudzoo.dk" target="blank"><h3>Givskud on the web</h3></a>
+							</li>
+							<li>
+								<a href="#"><h3>About us</h3></a>
+							</li>
+							<li>
+								<a href="#"><h3>Link</h3></a>
+							</li>
+						</ul>
+					</div>
+					<div class="social-media">
+						<a href="#"><img src="@/assets/img/icons/facebook.png" alt="facebook"></a>
+						<a href="#"><img src="@/assets/img/icons/instagram.png" alt="instagram"></a>
+						<a href="#"><img src="@/assets/img/icons/tripadvisor.png" alt="tripadvisor"></a>
+					</div>
+					<div class="copyright">
+						<p>@copyright 2018 Givskud Zoo  -  ZOOTOPIA. All rights reserved.</p>
+					</div>
 				</div>
 			</div>
 		</div>
