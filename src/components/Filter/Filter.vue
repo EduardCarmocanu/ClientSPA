@@ -11,7 +11,7 @@
 						@click="EmitNewActiveMarkerType(type.id)"
 						:class="type.id === activeMarkerType ? 'type-filter--active' : null"
 					>
-						<img :src="require('@/assets/img/icons/types/' + type.name + '.png')" :alt="type.name">
+						<img :src="markerTypesImages[type.name]" :alt="type.name">
 					</li>
 				</template>
 			</ul>
@@ -22,13 +22,15 @@
 <script>
 import { EventBus } from '@/utils/event-bus.js'
 import MarkerTypes from '@/components/Stores/MarkerTypes'
+import MarkerTypesImages from '@/components/Filter/MarkerTypesImages';
 
 export default {
 	data () {
 		return {
 			markerTypes: MarkerTypes,
 			activeMarkerType: 1,
-			firstTimeUser: true
+			firstTimeUser: true,
+			markerTypesImages: MarkerTypesImages
 		}
 	},
 	mounted () {
