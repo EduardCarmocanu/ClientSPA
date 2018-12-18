@@ -1,5 +1,5 @@
 class RequestFactory {
-	url = "https://givskud.azurewebsites.net/api/";
+	url = "https://givskud-dashboard.azurewebsites.net/api/";
 	configuration = {
 		"Content-Type": "application/json"
 	};
