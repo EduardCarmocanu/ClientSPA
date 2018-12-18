@@ -13,8 +13,7 @@
 				</div>
 			</div>
 			<div class="mobile-nav__body">
-				<div class="mobile-nav_footer">
-					<div class="links">
+				<div class="links">
 						<ul>
 							<li>
 								<a href="www.givskudzoo.dk" target="blank"><h3>Givskud on the web</h3></a>
@@ -27,6 +26,7 @@
 							</li>
 						</ul>
 					</div>
+				<div class="mobile-nav_footer">
 					<div class="social-media">
 						<a href="#"><img src="@/assets/img/icons/facebook.png" alt="facebook"></a>
 						<a href="#"><img src="@/assets/img/icons/instagram.png" alt="instagram"></a>

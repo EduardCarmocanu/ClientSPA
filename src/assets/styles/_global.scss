@@ -4,6 +4,13 @@ body {
 	margin: 0;
 	padding: 0;
 }
+#app {
+	height: 100vh;
+	overflow: hidden;
+}
+* {
+	color: $t-default;
+}
 ul, ol {
 	list-style: none;
 }

@@ -1,5 +1,5 @@
 class RequestFactory {
-	url = "https://localhost:44334/api/";
+	url = "https://givskud.azurewebsites.net/api/";
 	configuration = {
 		"Content-Type": "application/json"
 	};
