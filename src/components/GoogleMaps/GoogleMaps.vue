@@ -35,7 +35,7 @@
 			EventBus.$on('SetNewActiveMarkers', markerType => {
 				this.SetNewActiveMarkers(markerType);
 			})
-			RequestFactory.GET("MarkersApi", "", this.initializeMarkers);
+			RequestFactory.GET("GetMarkers", "", this.initializeMarkers);
 		},
 		methods: {
 			CheckBoundries() {

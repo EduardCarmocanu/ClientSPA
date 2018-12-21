@@ -55,7 +55,7 @@
 		},
 		methods: {
 			ShowDescription(descriptionID) {
-				RequestFactory.GET("DescriptionsApi", descriptionID, (description) => {
+				RequestFactory.GET("GetDescriptions", descriptionID, (description) => {
 					this.showDescriptionBox = true;
 					this.description = description;					
 				})
