@@ -39,22 +39,22 @@
 		},
 		methods: {
 			CheckBoundries() {
-				var correctionBoundries = []
+				var correctionBoundries = [];
 
 				if (this.map.getBounds().getNorthEast().lat() > this.bounds.NE.lat()) {
-					correctionBoundries.push("N")
+					correctionBoundries.push("N");
 				}
 				if (this.map.getBounds().getNorthEast().lng() > this.bounds.NE.lng()) {
-					correctionBoundries.push("E")
+					correctionBoundries.push("E");
 				}
 				if (this.map.getBounds().getSouthWest().lat() < this.bounds.SW.lat()) {
-					correctionBoundries.push("S")
+					correctionBoundries.push("S");
 				}
 				if (this.map.getBounds().getSouthWest().lng() < this.bounds.SW.lng()) {
-					correctionBoundries.push("W")
+					correctionBoundries.push("W");
 				}
 				
-				this.CorrectBoundries(correctionBoundries)
+				this.CorrectBoundries(correctionBoundries);
 
 			},
 			CorrectBoundries (boundries) {
@@ -73,10 +73,10 @@
 								E = this.bounds.NE.lng() - 0.1;
 								break;
 							case 'S':
-								S = this.bounds.SW.lat() + 0.1
+								S = this.bounds.SW.lat() + 0.1;
 								break;
 							case 'W':
-								W = this.bounds.SW.lng() + 0.1
+								W = this.bounds.SW.lng() + 0.1;
 								break;
 							default:
 								break;
@@ -99,7 +99,7 @@
 					markerInstance.addListener('click', () => {
 						this.ShowMarkerDescription(markerInstance.descriptionID, markerInstance.type)
 					});
-					this.SetMarker(markerInstance);
+					this.StoreMarkers(markerInstance);
 				});
 				this.SetNewActiveMarkers(this.activeMarkerType);
 			},
@@ -122,12 +122,12 @@
 				this.map.mapTypes.set('zoo', zooMap);
 				this.map.setMapTypeId('zoo');	
 			},
-			SetMarker (marker) {
+			StoreMarkers (marker) {
 				if (this.markersStore.hasOwnProperty(marker.type)) {
-					this.markersStore[marker.type].push(marker)
+					this.markersStore[marker.type].push(marker);
 				}
 				else {
-					this.markersStore[marker.type] = [marker]
+					this.markersStore[marker.type] = [marker];
 				}
 			},
 			SetActiveMarkers() {
